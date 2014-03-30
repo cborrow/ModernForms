@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EllipseButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ModernButton.cs">
       <SubType>Component</SubType>
     </Compile>

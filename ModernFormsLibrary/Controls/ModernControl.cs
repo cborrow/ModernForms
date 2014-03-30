@@ -57,7 +57,7 @@ namespace ModernForms.Controls
             animationThread.Start();
         }
 
-        protected void MoveControl(Point location, double seconds)
+        private void MoveControl(Point location, double seconds)
         {
             double x = (location.X - this.Location.X);
             double y = (location.Y - this.Location.Y);
@@ -97,7 +97,7 @@ namespace ModernForms.Controls
             }
         }
 
-        protected void ResizeControl(Size size, double seconds)
+        private void ResizeControl(Size size, double seconds)
         {
             double x = (size.Width - this.Width);
             double y = (size.Height - this.Height);
@@ -137,7 +137,7 @@ namespace ModernForms.Controls
             }
         }
 
-        protected void FadeToColor(Color color, double seconds)
+        private void FadeToColor(Color color, double seconds)
         {
             double r = (color.R - this.BackColor.R);
             double g = (color.G - this.BackColor.G);

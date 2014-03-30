@@ -233,7 +233,7 @@ namespace ModernForms.Controls
         {
             base.OnRenderToolStripBorder(e);
 
-            if (e.AffectedBounds != e.ToolStrip.Bounds)
+            if (e.ToolStrip.IsDropDown)
             {
                 Rectangle rect = new Rectangle(0, 0, e.AffectedBounds.Width - 1, e.AffectedBounds.Height - 1);
                 e.Graphics.DrawRectangle(Pens.Gainsboro, rect);

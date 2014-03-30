@@ -43,6 +43,7 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ellipseButton1 = new ModernForms.Controls.EllipseButton();
             this.modernButton1 = new ModernForms.Controls.ModernButton();
             this.modernMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,9 +74,9 @@
             this.modernMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem});
-            this.modernMenuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.modernMenuStrip1.Location = new System.Drawing.Point(1, 1);
             this.modernMenuStrip1.Name = "modernMenuStrip1";
-            this.modernMenuStrip1.Padding = new System.Windows.Forms.Padding(1);
+            this.modernMenuStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.modernMenuStrip1.SelectedColor = System.Drawing.Color.Empty;
             this.modernMenuStrip1.Size = new System.Drawing.Size(175, 30);
             this.modernMenuStrip1.TabIndex = 4;
@@ -93,7 +94,7 @@
             this.toolStripSeparator2,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 28);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 30);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -172,22 +173,40 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 28);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(42, 30);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // ellipseButton1
+            // 
+            this.ellipseButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.ellipseButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.ellipseButton1.BorderThickness = 3;
+            this.ellipseButton1.DrawBorder = true;
+            this.ellipseButton1.HotTrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.ellipseButton1.Image = global::TestApp.Properties.Resources.close;
+            this.ellipseButton1.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
+            this.ellipseButton1.Location = new System.Drawing.Point(552, 333);
+            this.ellipseButton1.Name = "ellipseButton1";
+            this.ellipseButton1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(115)))), ((int)(((byte)(234)))));
+            this.ellipseButton1.Size = new System.Drawing.Size(50, 50);
+            this.ellipseButton1.TabIndex = 6;
+            this.ellipseButton1.Text = "ellipseButton1";
             // 
             // modernButton1
             // 
-            this.modernButton1.BackColor = System.Drawing.Color.Gainsboro;
-            this.modernButton1.HotTrackColor = System.Drawing.Color.CornflowerBlue;
+            this.modernButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
+            this.modernButton1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.modernButton1.BorderThickness = 3;
+            this.modernButton1.DrawBorder = true;
+            this.modernButton1.HotTrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
             this.modernButton1.Image = null;
             this.modernButton1.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageBeforeText;
-            this.modernButton1.Location = new System.Drawing.Point(767, 107);
+            this.modernButton1.Location = new System.Drawing.Point(633, 82);
             this.modernButton1.Name = "modernButton1";
-            this.modernButton1.PressedColor = System.Drawing.Color.Blue;
-            this.modernButton1.Size = new System.Drawing.Size(203, 101);
-            this.modernButton1.TabIndex = 5;
+            this.modernButton1.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(115)))), ((int)(((byte)(234)))));
+            this.modernButton1.Size = new System.Drawing.Size(221, 143);
+            this.modernButton1.TabIndex = 7;
             this.modernButton1.Text = "modernButton1";
-            this.modernButton1.Click += new System.EventHandler(this.modernButton1_Click);
             // 
             // Form1
             // 
@@ -195,8 +214,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1039, 595);
             this.Controls.Add(this.modernButton1);
+            this.Controls.Add(this.ellipseButton1);
             this.Controls.Add(this.modernListBox1);
             this.Controls.Add(this.modernMenuStrip1);
+            this.DrawBorder = true;
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.modernMenuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -204,6 +225,7 @@
             this.Text = "Form1";
             this.Controls.SetChildIndex(this.modernMenuStrip1, 0);
             this.Controls.SetChildIndex(this.modernListBox1, 0);
+            this.Controls.SetChildIndex(this.ellipseButton1, 0);
             this.Controls.SetChildIndex(this.modernButton1, 0);
             this.modernMenuStrip1.ResumeLayout(false);
             this.modernMenuStrip1.PerformLayout();
@@ -217,7 +239,6 @@
         private ModernForms.Controls.ModernMenuStrip modernMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private ModernForms.Controls.ModernButton modernButton1;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -229,6 +250,8 @@
         private System.Windows.Forms.ToolStripMenuItem file1ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem file2ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customFileToolStripMenuItem;
+        private ModernForms.Controls.EllipseButton ellipseButton1;
+        private ModernForms.Controls.ModernButton modernButton1;
     }
 }
 

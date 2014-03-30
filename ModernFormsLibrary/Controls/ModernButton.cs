@@ -19,7 +19,23 @@ namespace ModernForms.Controls {
     public class ModernButton : ModernControl
     {
         bool hotTracked = false;
+        public bool HotTracked
+        {
+            get { return hotTracked; }
+        }
+
         bool pressed = false;
+        public bool Pressed
+        {
+            get { return pressed; }
+        }
+
+        bool drawBorder;
+        public bool DrawBorder
+        {
+            get { return drawBorder; }
+            set { drawBorder = value; }
+        }
 
         Color hotTrackColor;
         public Color HotTrackColor
@@ -33,6 +49,20 @@ namespace ModernForms.Controls {
         {
             get { return pressedColor; }
             set { pressedColor = value; }
+        }
+
+        Color borderColor;
+        public Color BorderColor
+        {
+            get { return borderColor; }
+            set { borderColor = value; }
+        }
+
+        int borderThickness;
+        public int BorderThickness
+        {
+            get { return borderThickness; }
+            set { borderThickness = value; }
         }
 
         Image image;
@@ -51,9 +81,12 @@ namespace ModernForms.Controls {
         
         public ModernButton()
         {
-            this.BackColor = Color.Gainsboro;
-            this.HotTrackColor = Color.CornflowerBlue;
-            this.PressedColor = Color.DarkBlue;
+            this.BackColor = ModernColors.BackColor;
+            this.HotTrackColor = ModernColors.SelectedBackColor;
+            this.PressedColor = ModernColors.PressedBackColor;
+            this.BorderColor = ModernColors.BorderColor;
+            this.DrawBorder = true;
+            this.BorderThickness = 3;
 
             this.Image = null;
             this.LayoutFlags = LayoutFlags.ImageBeforeText;
@@ -101,6 +134,10 @@ namespace ModernForms.Controls {
             }
 
             e.Graphics.FillRectangle(new SolidBrush(backColor), e.ClipRectangle);
+
+            if (this.DrawBorder)
+                e.Graphics.DrawRectangle(new Pen(this.BorderColor, this.BorderThickness),
+                    new Rectangle(1, 1, this.Width - this.BorderThickness, this.Height - this.BorderThickness));
 
             SizeF textSize = e.Graphics.MeasureString(this.Text, this.Font);
 

@@ -29,6 +29,13 @@ namespace ModernForms
             set { backColor = value; }
         }
 
+        static Color borderColor = Color.FromArgb(180, 180, 180);
+        public static Color BorderColor
+        {
+            get { return borderColor; }
+            set { borderColor = value; }
+        }
+
         static Color selectedBackColor = Color.FromArgb(221, 221, 221);
         public static Color SelectedBackColor
         {

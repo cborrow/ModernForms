@@ -16,6 +16,20 @@ namespace ModernForms
         const int WM_NCHITTEST = 0x0084;
         const int HTCLIENT = 0x01;
         const int HTCAPTION = 0x02;
+
+        bool drawBorder;
+        public bool DrawBorder
+        {
+            get { return drawBorder; }
+            set { drawBorder = value; }
+        }
+
+        int borderThickness;
+        public int BorderThickness
+        {
+            get { return borderThickness; }
+            set { borderThickness = value; }
+        }
     
         public ModernForm()
         {
@@ -35,6 +49,9 @@ namespace ModernForms
             minimizeButton.BackColor = ModernColors.BackColor;
             minimizeButton.HotTrackColor = ModernColors.SelectedBackColor;
             minimizeButton.PressedColor = ModernColors.PressedBackColor;
+
+            this.DrawBorder = false;
+            this.BorderThickness = 1;
         }
 
         protected override void OnResize(EventArgs e)
@@ -44,6 +61,17 @@ namespace ModernForms
             minimizeButton.Location = new Point(this.Width - 102, 1);
 
             base.OnResize(e);
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            if (this.DrawBorder)
+            {
+                e.Graphics.DrawRectangle(new Pen(ModernColors.BorderColor, this.BorderThickness),
+                    new Rectangle(0, 0, this.Width - this.BorderThickness, this.Height - this.BorderThickness));
+            }
         }
 
         protected override void WndProc(ref Message m)
@@ -68,6 +96,9 @@ namespace ModernForms
             // 
             this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimizeButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.minimizeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.minimizeButton.BorderThickness = 3;
+            this.minimizeButton.DrawBorder = false;
             this.minimizeButton.HotTrackColor = System.Drawing.Color.Gainsboro;
             this.minimizeButton.Image = global::ModernForms.Properties.Resources.minimize;
             this.minimizeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
@@ -84,6 +115,9 @@ namespace ModernForms
             // 
             this.maximizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.maximizeButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.maximizeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.maximizeButton.BorderThickness = 3;
+            this.maximizeButton.DrawBorder = false;
             this.maximizeButton.HotTrackColor = System.Drawing.Color.Gainsboro;
             this.maximizeButton.Image = global::ModernForms.Properties.Resources.maximize;
             this.maximizeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
@@ -100,6 +134,9 @@ namespace ModernForms
             // 
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.closeButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.closeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            this.closeButton.BorderThickness = 3;
+            this.closeButton.DrawBorder = false;
             this.closeButton.HotTrackColor = System.Drawing.Color.Gainsboro;
             this.closeButton.Image = global::ModernForms.Properties.Resources.close;
             this.closeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
