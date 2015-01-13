@@ -17,6 +17,27 @@ namespace ModernForms.Controls
             get { return items; }
         }
 
+        SelectedItemCollection selectedItems;
+        public SelectedItemCollection SelectedItems
+        {
+            get { return selectedItems; }
+        }
+
+        SelectedIndexCollection selectedIndicies;
+        public SelectedIndexCollection SelectedIndicies
+        {
+            get { return selectedIndicies; }
+        }
+
+        bool multiSelection;
+        public bool MultiSelection
+        {
+            get { return multiSelection; }
+            set { multiSelection = value; }
+        }
+
+        bool multiSelectKeyDown = false;
+
         int itemHeight;
         public int ItemHeight
         {
@@ -67,18 +88,21 @@ namespace ModernForms.Controls
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
+            selectedIndicies = new SelectedIndexCollection();
+            selectedItems = new SelectedItemCollection();
+
             items = new ModernListBoxItemCollection();
             items.ItemAdded += new EventHandler(items_ItemAdded);
             items.ItemRemoved += new EventHandler(items_ItemRemoved);
 
             this.ItemHeight = 30;
-            this.HotLightColor = ModernColors.SelectedBackColor;
+            this.HotLightColor = ModernColors.HotTrackColor;
             this.SelectedColor = ModernColors.AccentColor;
             this.SelectedIndex = -1;
             this.HotLightedIndex = -1;
 
             scrollBar = new ModernScrollBar();
-            scrollBar.GutterColor = ModernColors.SelectedBackColor;
+            scrollBar.GutterColor = ModernColors.HotTrackColor;
             scrollBar.ThumbColor = ModernColors.AccentColor;
             scrollBar.Location = new Point(this.Width - 5, 0);
             scrollBar.Size = new Size(5, this.Height);
@@ -134,8 +158,20 @@ namespace ModernForms.Controls
 
             if (index >= 0 && index < this.Items.Count)
             {
-                this.SelectedIndex = index;
-                this.Refresh();
+                if (multiSelection && multiSelectKeyDown)
+                {
+                    selectedIndicies.Add(index);
+                    selectedItems.Add(items[index]);
+                    this.Refresh();
+                }
+                else
+                {
+                    selectedIndicies.Clear();
+                    selectedItems.Clear();
+
+                    this.SelectedIndex = index;
+                    this.Refresh();
+                }
             }
 
             base.OnMouseClick(e);
@@ -162,7 +198,7 @@ namespace ModernForms.Controls
             string text = this.Items[e.Index].ToString();
 
             if (e.State == DrawItemState.HotLight)
-                backColor = ModernColors.SelectedBackColor;
+                backColor = ModernColors.HotTrackColor;
             else if (e.State == DrawItemState.Selected)
             {
                 foreColor = ModernColors.PressedForeColor;
@@ -189,10 +225,20 @@ namespace ModernForms.Controls
             {
                 DrawItemState state = DrawItemState.Default;
 
-                if (i == this.HotLightedIndex && i != this.SelectedIndex)
-                    state = DrawItemState.HotLight;
-                else if (i == this.SelectedIndex)
-                    state = DrawItemState.Selected;
+                if (multiSelection && selectedIndicies.Count > 0)
+                {
+                    if (i == this.HotLightedIndex && !selectedIndicies.Contains(i))
+                        state = DrawItemState.HotLight;
+                    else if (selectedIndicies.Contains(i))
+                        state = DrawItemState.Selected;
+                }
+                else
+                {
+                    if (i == this.HotLightedIndex && i != this.SelectedIndex)
+                        state = DrawItemState.HotLight;
+                    else if (i == this.SelectedIndex)
+                        state = DrawItemState.Selected;
+                }
 
                 Rectangle rect = new Rectangle(0, ((i - firstVisibleItem) * this.ItemHeight), this.Width, this.ItemHeight);
                 DrawItemEventArgs de = new DrawItemEventArgs(e.Graphics, this.Font, rect, i, state);
@@ -257,6 +303,22 @@ namespace ModernForms.Controls
         }
 
         protected virtual void OnItemRemoved(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class SelectedItemCollection : System.Collections.ObjectModel.Collection<object>
+    {
+        public SelectedItemCollection()
+        {
+
+        }
+    }
+
+    public class SelectedIndexCollection : System.Collections.ObjectModel.Collection<int>
+    {
+        public SelectedIndexCollection()
         {
 
         }
