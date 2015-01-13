@@ -143,9 +143,7 @@ namespace ModernForms.Controls
 
         protected override void OnMouseWheel(MouseEventArgs e)
         {
-
             this.scrollBar.Value -= (e.Delta / 4);
-
             base.OnMouseWheel(e);
         }
 
