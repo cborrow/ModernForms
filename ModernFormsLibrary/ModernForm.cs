@@ -46,16 +46,16 @@ namespace ModernForms
             this.BackColor = ModernColors.BackColor;
 
             closeButton.BackColor = ModernColors.BackColor;
-            closeButton.HotTrackColor = Color.FromArgb(200, Color.Red);
+            closeButton.HotTrackColor = Color.FromArgb(219, 40, 25);
             closeButton.PressedColor = Color.Firebrick;
 
             maximizeButton.BackColor = ModernColors.BackColor;
-            maximizeButton.HotTrackColor = ModernColors.SelectedBackColor;
-            maximizeButton.PressedColor = ModernColors.AccentColor;
+            maximizeButton.HotTrackColor = ModernColors.HotTrackColor;
+            maximizeButton.PressedColor = ModernColors.PressedBackColor;
 
             minimizeButton.BackColor = ModernColors.BackColor;
-            minimizeButton.HotTrackColor = ModernColors.SelectedBackColor;
-            minimizeButton.PressedColor = ModernColors.AccentColor;
+            minimizeButton.HotTrackColor = ModernColors.HotTrackColor;
+            minimizeButton.PressedColor = ModernColors.PressedBackColor;
 
             this.DrawBorder = false;
             this.BorderThickness = 1;
