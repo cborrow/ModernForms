@@ -29,8 +29,8 @@ namespace ModernForms.Controls
 
         public Color SelectedColor
         {
-            get { return ModernColors.SelectedBackColor; }
-            set { ModernColors.SelectedBackColor = value; }
+            get { return ModernColors.HotTrackColor; }
+            set { ModernColors.HotTrackColor = value; }
         }
 
         public Color PressedColor
