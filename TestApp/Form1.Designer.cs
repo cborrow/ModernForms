@@ -57,6 +57,7 @@
             this.modernListBox1.ItemHeight = 30;
             this.modernListBox1.Location = new System.Drawing.Point(31, 107);
             this.modernListBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.modernListBox1.MultiSelection = false;
             this.modernListBox1.Name = "modernListBox1";
             this.modernListBox1.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(115)))), ((int)(((byte)(234)))));
             this.modernListBox1.SelectedIndex = -1;

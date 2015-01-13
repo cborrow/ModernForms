@@ -24,6 +24,8 @@ namespace TestApp
             {
                 modernListBox1.Items.Add("Test Item " + i.ToString());
             }
+
+            ellipseButton1.AnimateBackColorChange = true;
         }
 
         private void modernButton1_Click(object sender, EventArgs e)
