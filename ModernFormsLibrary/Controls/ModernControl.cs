@@ -21,6 +21,24 @@ namespace ModernForms.Controls
         public event EventHandler EffectStarted;
         public event EventHandler EffectEnded;
 
+        public bool AnimateBackColorChange = false;
+        public double SecondsToChange = 0.5;
+
+        public override Color BackColor
+        {
+            get
+            {
+                return base.BackColor;
+            }
+            set
+            {
+                if (AnimateBackColorChange)
+                    this.SetBackgroundColor(value, SecondsToChange);
+                else
+                    base.BackColor = value;
+            }
+        }
+
         public ModernControl()
         {
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
