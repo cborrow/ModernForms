@@ -18,6 +18,9 @@ namespace ModernForms.Controls {
 
     public class ModernButton : ModernControl
     {
+        public event EventHandler HotTrackChanged;
+        public event EventHandler SelectedChanged;
+
         bool hotTracked = false;
         public bool HotTracked
         {
@@ -82,41 +85,54 @@ namespace ModernForms.Controls {
         public ModernButton()
         {
             this.BackColor = ModernColors.BackColor;
-            this.HotTrackColor = ModernColors.SelectedBackColor;
-            this.PressedColor = ModernColors.AccentColor;
+            this.HotTrackColor = ModernColors.HotTrackColor;
+            this.PressedColor = ModernColors.PressedBackColor;
             this.BorderColor = ModernColors.BorderColor;
             this.DrawBorder = true;
             this.BorderThickness = 3;
 
             this.Image = null;
             this.LayoutFlags = LayoutFlags.ImageBeforeText;
+
+            this.HotTrackChanged = new EventHandler(OnHotTrackChanged);
+            this.SelectedChanged = new EventHandler(OnSelectedChanged);
+        }
+
+        protected virtual void OnHotTrackChanged(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
+        protected virtual void OnSelectedChanged(object sender, EventArgs e)
+        {
+            this.Refresh();
         }
 
         protected override void OnMouseEnter(EventArgs e)
         {
             hotTracked = true;
-            this.Refresh();
+            HotTrackChanged(this, EventArgs.Empty);
             base.OnMouseEnter(e);
         }
 
         protected override void OnMouseLeave(EventArgs e)
         {
             hotTracked = false;
-            this.Refresh();
+            HotTrackChanged(this, EventArgs.Empty);
             base.OnMouseLeave(e);
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
             pressed = true;
-            this.Refresh();
+            SelectedChanged(this, EventArgs.Empty);
             base.OnMouseDown(e);
         }
 
         protected override void OnMouseUp(MouseEventArgs e)
         {
             pressed = false;
-            this.Refresh();
+            SelectedChanged(this, EventArgs.Empty);
             base.OnMouseUp(e);
         }
 
