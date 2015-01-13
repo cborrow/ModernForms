@@ -110,8 +110,8 @@ namespace ModernForms.Controls
 
             ValueChanged = new EventHandler(OnValueChanged);
 
-            gutterColor = Color.GhostWhite;
-            thumbColor = Color.Silver;
+            gutterColor = ModernColors.HotTrackColor;
+            thumbColor = ModernColors.AccentColor;
 
             this.Value = 0;
             this.Min = 0;
