@@ -207,6 +207,7 @@
             this.modernButton1.Size = new System.Drawing.Size(221, 143);
             this.modernButton1.TabIndex = 7;
             this.modernButton1.Text = "modernButton1";
+            this.modernButton1.Click += new System.EventHandler(this.modernButton1_Click);
             // 
             // Form1
             // 

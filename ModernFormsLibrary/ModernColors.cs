@@ -43,11 +43,11 @@ namespace ModernForms
             set { selectedBackColor = value; }
         }
 
-        static Color pressedBackColor = Color.FromArgb(42, 115, 234);
-        public static Color PressedBackColor
+        static Color accentColor = Color.FromArgb(42, 115, 234);
+        public static Color AccentColor
         {
-            get { return pressedBackColor; }
-            set { pressedBackColor = value; }
+            get { return accentColor; }
+            set { accentColor = value; }
         }
     }
 }

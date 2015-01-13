@@ -31,8 +31,15 @@ namespace ModernForms.Controls
             get { return value; }
             set
             {
-                this.value = value;
-                ValueChanged(this, EventArgs.Empty);
+                if (value < 0)
+                    this.value = 0;
+                else if (value > Max)
+                    this.value = Max;
+                else
+                {
+                    this.value = value;
+                    ValueChanged(this, EventArgs.Empty);
+                }
             }
         }
 

@@ -12,7 +12,7 @@ namespace ModernForms.Controls
         public EllipseButton()
             : base()
         {
-
+            
         }
 
         protected override void OnPaint(PaintEventArgs e)

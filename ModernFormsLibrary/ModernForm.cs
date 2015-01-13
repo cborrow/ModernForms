@@ -30,6 +30,13 @@ namespace ModernForms
             get { return borderThickness; }
             set { borderThickness = value; }
         }
+
+        bool moveable;
+        public bool Moveable
+        {
+            get { return moveable; }
+            set { moveable = value; }
+        }
     
         public ModernForm()
         {
@@ -39,19 +46,20 @@ namespace ModernForms
             this.BackColor = ModernColors.BackColor;
 
             closeButton.BackColor = ModernColors.BackColor;
-            closeButton.HotTrackColor = ModernColors.SelectedBackColor;
-            closeButton.PressedColor = Color.FromArgb(189, 75, 93);
+            closeButton.HotTrackColor = Color.FromArgb(200, Color.Red);
+            closeButton.PressedColor = Color.Firebrick;
 
             maximizeButton.BackColor = ModernColors.BackColor;
             maximizeButton.HotTrackColor = ModernColors.SelectedBackColor;
-            maximizeButton.PressedColor = ModernColors.PressedBackColor;
+            maximizeButton.PressedColor = ModernColors.AccentColor;
 
             minimizeButton.BackColor = ModernColors.BackColor;
             minimizeButton.HotTrackColor = ModernColors.SelectedBackColor;
-            minimizeButton.PressedColor = ModernColors.PressedBackColor;
+            minimizeButton.PressedColor = ModernColors.AccentColor;
 
             this.DrawBorder = false;
             this.BorderThickness = 1;
+            this.Moveable = true;
         }
 
         protected override void OnResize(EventArgs e)
@@ -80,9 +88,39 @@ namespace ModernForms
 
             if (m.Msg == WM_NCHITTEST)
             {
-                if ((int)m.Result == HTCLIENT)
-                    m.Result = new IntPtr(HTCAPTION);
+                if (this.Moveable)
+                {
+                    if ((int)m.Result == HTCLIENT)
+                        m.Result = new IntPtr(HTCAPTION);
+                }
             }
+
+            if (this.ControlBox == false)
+            {
+                closeButton.Hide();
+                minimizeButton.Hide();
+                maximizeButton.Hide();
+            }
+            else if (this.Visible && this.ControlBox == true && !closeButton.Visible)
+            {
+                closeButton.Show();
+                
+                if(this.MinimizeBox)
+                    minimizeButton.Show();
+
+                if(this.MaximizeBox)
+                    maximizeButton.Show();
+            }
+
+            if (this.Visible && !this.MinimizeBox && minimizeButton.Visible)
+                minimizeButton.Hide();
+            else if (this.Visible && this.MinimizeBox && !minimizeButton.Visible && this.ControlBox)
+                minimizeButton.Show();
+
+            if (this.Visible && !this.MaximizeBox && maximizeButton.Visible)
+                maximizeButton.Hide();
+            else if (this.Visible && this.MaximizeBox && !maximizeButton.Visible && this.ControlBox)
+                maximizeButton.Show();
         }
 
         private void InitializeComponent()

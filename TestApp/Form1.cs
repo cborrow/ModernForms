@@ -28,7 +28,7 @@ namespace TestApp
 
         private void modernButton1_Click(object sender, EventArgs e)
         {
-            modernButton1.Move(new Point(400, 300), 3);
+            ModernMessageBox.Show(this, "This is some not-so crazy, however, odd content.", "This is a test caption.", MessageBoxButtons.YesNoCancel, MessageBoxIcon.None);
         }
     }
 }

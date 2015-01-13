@@ -35,8 +35,8 @@ namespace ModernForms.Controls
 
         public Color PressedColor
         {
-            get { return ModernColors.PressedBackColor; }
-            set { ModernColors.PressedBackColor = value; }
+            get { return ModernColors.AccentColor; }
+            set { ModernColors.AccentColor = value; }
         }
 
         public ModernToolStripRenderer()

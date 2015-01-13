@@ -73,13 +73,13 @@ namespace ModernForms.Controls
 
             this.ItemHeight = 30;
             this.HotLightColor = ModernColors.SelectedBackColor;
-            this.SelectedColor = ModernColors.PressedBackColor;
+            this.SelectedColor = ModernColors.AccentColor;
             this.SelectedIndex = -1;
             this.HotLightedIndex = -1;
 
             scrollBar = new ModernScrollBar();
             scrollBar.GutterColor = ModernColors.SelectedBackColor;
-            scrollBar.ThumbColor = ModernColors.PressedBackColor;
+            scrollBar.ThumbColor = ModernColors.AccentColor;
             scrollBar.Location = new Point(this.Width - 5, 0);
             scrollBar.Size = new Size(5, this.Height);
             scrollBar.Orientation = Orientation.Vertical;
@@ -141,6 +141,14 @@ namespace ModernForms.Controls
             base.OnMouseClick(e);
         }
 
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+
+            this.scrollBar.Value -= (e.Delta / 4);
+
+            base.OnMouseWheel(e);
+        }
+
         protected override void OnResize(EventArgs e)
         {
             scrollBar.Location = new Point(this.Width - 8, 0);
@@ -160,7 +168,7 @@ namespace ModernForms.Controls
             else if (e.State == DrawItemState.Selected)
             {
                 foreColor = ModernColors.PressedForeColor;
-                backColor = ModernColors.PressedBackColor;
+                backColor = ModernColors.AccentColor;
             }
 
             e.Graphics.FillRectangle(new SolidBrush(backColor), e.Bounds);

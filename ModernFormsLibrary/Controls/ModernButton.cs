@@ -83,7 +83,7 @@ namespace ModernForms.Controls {
         {
             this.BackColor = ModernColors.BackColor;
             this.HotTrackColor = ModernColors.SelectedBackColor;
-            this.PressedColor = ModernColors.PressedBackColor;
+            this.PressedColor = ModernColors.AccentColor;
             this.BorderColor = ModernColors.BorderColor;
             this.DrawBorder = true;
             this.BorderThickness = 3;
