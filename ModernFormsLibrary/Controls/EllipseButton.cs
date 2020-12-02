@@ -35,7 +35,7 @@ namespace ModernForms.Controls
             if(this.DrawBorder)
                 borderColor = this.BorderColor;
 
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             e.Graphics.FillEllipse(new SolidBrush(backColor), 
                 new Rectangle(2, 2, this.Width - (this.BorderThickness + 1), this.Height - (this.BorderThickness + 1)));
             e.Graphics.DrawEllipse(new Pen(this.BorderColor, this.BorderThickness), 
