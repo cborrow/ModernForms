@@ -7,7 +7,8 @@ using System.Windows.Forms;
 
 namespace ModernForms.Controls {
 
-    public enum LayoutFlags {
+    public enum LayoutFlags 
+    {
         TextOnly,
         ImageOnly,
         ImageBeforeText,
@@ -18,56 +19,6 @@ namespace ModernForms.Controls {
 
     public class ModernButton : ModernControl
     {
-        public event EventHandler HotTrackChanged;
-        public event EventHandler SelectedChanged;
-
-        bool hotTracked = false;
-        public bool HotTracked
-        {
-            get { return hotTracked; }
-        }
-
-        bool pressed = false;
-        public bool Pressed
-        {
-            get { return pressed; }
-        }
-
-        bool drawBorder;
-        public bool DrawBorder
-        {
-            get { return drawBorder; }
-            set { drawBorder = value; }
-        }
-
-        Color hotTrackColor;
-        public Color HotTrackColor
-        {
-            get { return hotTrackColor; }
-            set { hotTrackColor = value; }
-        }
-
-        Color pressedColor;
-        public Color PressedColor
-        {
-            get { return pressedColor; }
-            set { pressedColor = value; }
-        }
-
-        Color borderColor;
-        public Color BorderColor
-        {
-            get { return borderColor; }
-            set { borderColor = value; }
-        }
-
-        int borderThickness;
-        public int BorderThickness
-        {
-            get { return borderThickness; }
-            set { borderThickness = value; }
-        }
-
         Image image;
         public Image Image
         {
@@ -93,60 +44,24 @@ namespace ModernForms.Controls {
 
             this.Image = null;
             this.LayoutFlags = LayoutFlags.ImageBeforeText;
-
-            this.HotTrackChanged = new EventHandler(OnHotTrackChanged);
-            this.SelectedChanged = new EventHandler(OnSelectedChanged);
-        }
-
-        protected virtual void OnHotTrackChanged(object sender, EventArgs e)
-        {
-            this.Refresh();
-        }
-
-        protected virtual void OnSelectedChanged(object sender, EventArgs e)
-        {
-            this.Refresh();
-        }
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            hotTracked = true;
-            HotTrackChanged(this, EventArgs.Empty);
-            base.OnMouseEnter(e);
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            hotTracked = false;
-            HotTrackChanged(this, EventArgs.Empty);
-            base.OnMouseLeave(e);
-        }
-
-        protected override void OnMouseDown(MouseEventArgs e)
-        {
-            pressed = true;
-            SelectedChanged(this, EventArgs.Empty);
-            base.OnMouseDown(e);
-        }
-
-        protected override void OnMouseUp(MouseEventArgs e)
-        {
-            pressed = false;
-            SelectedChanged(this, EventArgs.Empty);
-            base.OnMouseUp(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            Color foreColor = ModernColors.ForeColor;
+            Color foreColor = this.ForeColor;
             Color backColor = this.BackColor;
 
-            if (hotTracked && !pressed)
-                backColor = hotTrackColor;
-            else if (pressed)
+            if (HotTracked && !Pressed)
+            {
+                if (!AltStyleMode)
+                    backColor = HotTrackColor;
+                else
+                    foreColor = HotTrackColor;
+            }
+            else if (Pressed)
             {
                 foreColor = ModernColors.PressedForeColor;
-                backColor = pressedColor;
+                backColor = PressedColor;
             }
 
             e.Graphics.FillRectangle(new SolidBrush(backColor), e.ClipRectangle);

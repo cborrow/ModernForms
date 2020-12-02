@@ -24,6 +24,63 @@ namespace ModernForms.Controls
         public bool AnimateBackColorChange = false;
         public double SecondsToChange = 0.5;
 
+        public event EventHandler HotTrackChanged;
+        public event EventHandler SelectedChanged;
+
+        bool hotTracked = false;
+        public bool HotTracked
+        {
+            get { return hotTracked; }
+        }
+
+        bool pressed = false;
+        public bool Pressed
+        {
+            get { return pressed; }
+        }
+
+        bool drawBorder;
+        public bool DrawBorder
+        {
+            get { return drawBorder; }
+            set { drawBorder = value; }
+        }
+
+        Color hotTrackColor;
+        public Color HotTrackColor
+        {
+            get { return hotTrackColor; }
+            set { hotTrackColor = value; }
+        }
+
+        Color pressedColor;
+        public Color PressedColor
+        {
+            get { return pressedColor; }
+            set { pressedColor = value; }
+        }
+
+        Color borderColor;
+        public Color BorderColor
+        {
+            get { return borderColor; }
+            set { borderColor = value; }
+        }
+
+        int borderThickness;
+        public int BorderThickness
+        {
+            get { return borderThickness; }
+            set { borderThickness = value; }
+        }
+
+        bool altStyleMode;
+        public bool AltStyleMode
+        {
+            get { return altStyleMode; }
+            set { altStyleMode = value; }
+        }
+
         public override Color BackColor
         {
             get
@@ -46,6 +103,8 @@ namespace ModernForms.Controls
 
             this.EffectStarted = new EventHandler(OnEffectStarted);
             this.EffectEnded = new EventHandler(OnEffectEnded);
+            this.HotTrackChanged = new EventHandler(OnHotTrackChanged);
+            this.SelectedChanged = new EventHandler(OnSelectedChanged);
         }
 
         public new void Move(Point location, double seconds)
@@ -227,6 +286,44 @@ namespace ModernForms.Controls
         protected virtual void OnEffectEnded(object sender, EventArgs e)
         {
 
+        }
+
+        protected virtual void OnHotTrackChanged(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
+        protected virtual void OnSelectedChanged(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            hotTracked = true;
+            HotTrackChanged(this, EventArgs.Empty);
+            base.OnMouseEnter(e);
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            hotTracked = false;
+            HotTrackChanged(this, EventArgs.Empty);
+            base.OnMouseLeave(e);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            pressed = true;
+            SelectedChanged(this, EventArgs.Empty);
+            base.OnMouseDown(e);
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            pressed = false;
+            SelectedChanged(this, EventArgs.Empty);
+            base.OnMouseUp(e);
         }
     }
 }
