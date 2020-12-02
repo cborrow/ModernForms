@@ -9,9 +9,6 @@ namespace ModernForms
 {
     public class ModernForm : Form
     {
-        private Controls.ModernButton maximizeButton;
-        private Controls.ModernButton minimizeButton;
-        private Controls.ModernButton closeButton;
 
         const int WM_NCHITTEST = 0x0084;
         const int HTCLIENT = 0x01;
@@ -25,6 +22,10 @@ namespace ModernForms
         }
 
         int borderThickness;
+        private Controls.ModernControlButton closeButton;
+        private Controls.ModernControlButton maximizeButton;
+        private Controls.ModernControlButton minimizeButton;
+
         public int BorderThickness
         {
             get { return borderThickness; }
@@ -125,66 +126,72 @@ namespace ModernForms
 
         private void InitializeComponent()
         {
-            this.minimizeButton = new ModernForms.Controls.ModernButton();
-            this.maximizeButton = new ModernForms.Controls.ModernButton();
-            this.closeButton = new ModernForms.Controls.ModernButton();
+            this.minimizeButton = new ModernForms.Controls.ModernControlButton();
+            this.maximizeButton = new ModernForms.Controls.ModernControlButton();
+            this.closeButton = new ModernForms.Controls.ModernControlButton();
             this.SuspendLayout();
             // 
             // minimizeButton
             // 
+            this.minimizeButton.AltStyleMode = false;
             this.minimizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.minimizeButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.minimizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.minimizeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.minimizeButton.BorderThickness = 3;
+            this.minimizeButton.ButtonType = ModernForms.Controls.ControlButtonType.Minimize;
             this.minimizeButton.DrawBorder = false;
-            this.minimizeButton.HotTrackColor = System.Drawing.Color.Gainsboro;
-            this.minimizeButton.Image = global::ModernForms.Properties.Resources.minimize;
-            this.minimizeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
-            this.minimizeButton.Location = new System.Drawing.Point(900, 1);
-            this.minimizeButton.Margin = new System.Windows.Forms.Padding(1);
+            this.minimizeButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.minimizeButton.HotTrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(255)))));
+            this.minimizeButton.Image = null;
+            this.minimizeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageBeforeText;
+            this.minimizeButton.Location = new System.Drawing.Point(933, 2);
+            this.minimizeButton.MinimalStyle = true;
             this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.PressedColor = System.Drawing.Color.CornflowerBlue;
-            this.minimizeButton.Size = new System.Drawing.Size(33, 30);
-            this.minimizeButton.TabIndex = 2;
-            this.minimizeButton.Text = "button3";
+            this.minimizeButton.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(255)))));
+            this.minimizeButton.Size = new System.Drawing.Size(25, 25);
+            this.minimizeButton.TabIndex = 5;
             this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
             // 
             // maximizeButton
             // 
+            this.maximizeButton.AltStyleMode = false;
             this.maximizeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.maximizeButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.maximizeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.maximizeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.maximizeButton.BorderThickness = 3;
+            this.maximizeButton.ButtonType = ModernForms.Controls.ControlButtonType.Maximize;
             this.maximizeButton.DrawBorder = false;
-            this.maximizeButton.HotTrackColor = System.Drawing.Color.Gainsboro;
-            this.maximizeButton.Image = global::ModernForms.Properties.Resources.maximize;
-            this.maximizeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
-            this.maximizeButton.Location = new System.Drawing.Point(935, 1);
-            this.maximizeButton.Margin = new System.Windows.Forms.Padding(1);
+            this.maximizeButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.maximizeButton.HotTrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(255)))));
+            this.maximizeButton.Image = null;
+            this.maximizeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageBeforeText;
+            this.maximizeButton.Location = new System.Drawing.Point(955, 2);
+            this.maximizeButton.MinimalStyle = true;
             this.maximizeButton.Name = "maximizeButton";
-            this.maximizeButton.PressedColor = System.Drawing.Color.CornflowerBlue;
-            this.maximizeButton.Size = new System.Drawing.Size(33, 30);
-            this.maximizeButton.TabIndex = 1;
-            this.maximizeButton.Text = "button2";
+            this.maximizeButton.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(255)))));
+            this.maximizeButton.Size = new System.Drawing.Size(25, 25);
+            this.maximizeButton.TabIndex = 4;
             this.maximizeButton.Click += new System.EventHandler(this.maximizeButton_Click);
             // 
             // closeButton
             // 
+            this.closeButton.AltStyleMode = false;
             this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.closeButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(243)))));
             this.closeButton.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.closeButton.BorderThickness = 3;
+            this.closeButton.ButtonType = ModernForms.Controls.ControlButtonType.Close;
             this.closeButton.DrawBorder = false;
-            this.closeButton.HotTrackColor = System.Drawing.Color.Gainsboro;
-            this.closeButton.Image = global::ModernForms.Properties.Resources.close;
-            this.closeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageOnly;
-            this.closeButton.Location = new System.Drawing.Point(970, 1);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(1);
+            this.closeButton.ForeColor = System.Drawing.Color.DarkGray;
+            this.closeButton.HotTrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(221)))), ((int)(((byte)(221)))));
+            this.closeButton.Image = null;
+            this.closeButton.LayoutFlags = ModernForms.Controls.LayoutFlags.ImageBeforeText;
+            this.closeButton.Location = new System.Drawing.Point(977, 2);
+            this.closeButton.MinimalStyle = true;
             this.closeButton.Name = "closeButton";
-            this.closeButton.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(79)))), ((int)(((byte)(79)))));
-            this.closeButton.Size = new System.Drawing.Size(33, 30);
-            this.closeButton.TabIndex = 0;
-            this.closeButton.Text = "button1";
+            this.closeButton.PressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(255)))));
+            this.closeButton.Size = new System.Drawing.Size(25, 25);
+            this.closeButton.TabIndex = 3;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // ModernForm
